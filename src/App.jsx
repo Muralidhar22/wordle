@@ -5,18 +5,18 @@ import KeyBoard from './components/KeyBoard.component';
 import { useAppContext } from './contexts/AppContext';
 
 function App() {
-  const { gameOver, message } = useAppContext()
-  console.log(gameOver, message)
+  const { gameOver, message } = useAppContext();
+  console.log(gameOver, message);
   return (
-  <div className="app">
-    {/* <Modal /> */}
-    <Navbar />
-    <main>
-    { gameOver && <span className="wordle-answer">{message}</span> }
-    <Board />
-    <KeyBoard />
-    </main>
-  </div>
+    <div className="app">
+      {/* <Modal /> */}
+      <Navbar />
+      <main>
+        {gameOver && <span className="wordle-answer">{message}</span>}
+        <Board />
+        <KeyBoard />
+      </main>
+    </div>
   );
 }
 

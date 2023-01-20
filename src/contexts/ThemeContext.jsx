@@ -4,33 +4,33 @@ const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('');
-  
+
   const handleChange = (event) => {
     if (event.matches) {
-      setTheme('dark')
-      document.querySelector(':root').setAttribute('data-theme','dark')
+      setTheme('dark');
+      document.querySelector(':root').setAttribute('data-theme', 'dark');
     } else {
-      setTheme('light')
-      document.querySelector(':root').setAttribute('data-theme','light')
+      setTheme('light');
+      document.querySelector(':root').setAttribute('data-theme', 'light');
     }
   };
 
   const switchTheme = (mode) => {
-    setTheme(mode)
-    document.querySelector(':root').setAttribute('data-theme',mode)
-  }
-  
+    setTheme(mode);
+    document.querySelector(':root').setAttribute('data-theme', mode);
+  };
+
   useEffect(() => {
     const match = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if(match) {
-      setTheme('dark')
-      document.querySelector(':root').setAttribute('data-theme','dark')
+    if (match) {
+      setTheme('dark');
+      document.querySelector(':root').setAttribute('data-theme', 'dark');
     } else {
-      setTheme('light')
-      document.querySelector(':root').setAttribute('data-theme','light')
+      setTheme('light');
+      document.querySelector(':root').setAttribute('data-theme', 'light');
     }
-    
+
     window
       .matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', handleChange);
@@ -41,8 +41,10 @@ export const ThemeProvider = ({ children }) => {
     };
   }, []);
 
-  const value = { theme, switchTheme }
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  const value = { theme, switchTheme };
+  return (
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+  );
 };
 
 export const useThemeContext = () => {
