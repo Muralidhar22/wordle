@@ -1,10 +1,18 @@
 import { useThemeContext } from '../contexts/ThemeContext';
 
-import { FaRegMoon } from 'react-icons/fa';
+import {
+  FaRegMoon,
+  FaQuestionCircle,
+  FaRegQuestionCircle,
+} from 'react-icons/fa';
 import { HiOutlineSun } from 'react-icons/hi';
 
-const Navbar = () => {
+const Navbar = ({ setIsModalDisplayed }) => {
   const { theme, switchTheme } = useThemeContext();
+
+  const displayInfoModal = () => {
+    setIsModalDisplayed(true);
+  };
 
   return (
     <nav>
@@ -13,18 +21,35 @@ const Navbar = () => {
       </header>
       <div className="theme-switch-icon">
         {theme === 'dark' && (
-          <button className="theme-switch" onClick={() => switchTheme('light')}>
-            <span>
-              <FaRegMoon color="white" />
-            </span>
-          </button>
+          <span className="nav-icons">
+            <button className="info-button" onClick={displayInfoModal}>
+              <FaRegQuestionCircle color="white" />
+            </button>
+
+            <button
+              className="theme-switch"
+              onClick={() => switchTheme('light')}
+            >
+              <span>
+                <FaRegMoon color="white" />
+              </span>
+            </button>
+          </span>
         )}
         {theme === 'light' && (
-          <button className="theme-switch" onClick={() => switchTheme('dark')}>
-            <span>
-              <HiOutlineSun />
-            </span>
-          </button>
+          <span className="nav-icons">
+            <button className="info-button" onClick={displayInfoModal}>
+              <FaQuestionCircle />
+            </button>
+            <button
+              className="theme-switch"
+              onClick={() => switchTheme('dark')}
+            >
+              <span>
+                <HiOutlineSun />
+              </span>
+            </button>
+          </span>
         )}
       </div>
     </nav>

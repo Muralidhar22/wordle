@@ -7,7 +7,7 @@ const Board = () => {
   return (
     <div className="board-container">
       {boardElements.map((row, rowIdx) => (
-        <>
+        <span className="board-row" key={rowIdx}>
           {row.map((value, colIdx) => (
             <Box
               key={rowIdx + '' + colIdx}
@@ -16,7 +16,7 @@ const Board = () => {
               row={rowIdx}
             />
           ))}
-        </>
+        </span>
       ))}
     </div>
   );
