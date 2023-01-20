@@ -20,7 +20,6 @@ for (let row = 0; row < ROW_COUNT; row++) {
 }
 
 const isKeyAnAlphabet = (key) => {
-    key = key.toUpperCase()
     const result = keys[0].includes(key) || keys[1].includes(key) || keys[2].includes(key)
     return result;
 }

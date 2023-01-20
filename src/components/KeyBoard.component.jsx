@@ -5,27 +5,28 @@ import { IoBackspaceOutline } from "react-icons/io5";
     import { IoMdBackspace} from "react-icons/io";
 
 const KeyBoard = () => {
-    const { keys, keysState } = useAppContext()
+    const { keys, keysState, handleKeyPress } = useAppContext()
     const { theme } = useThemeContext()
-    console.log(theme)
+
     return(<div className="keyboard" aria-label="keyboard">
         <div className="keyboard-row">
-    {keys[0].map(keyValue => (
-        <span key={keyValue} data-status={keysState[keyValue] && keysState[keyValue]} className="keyboard-key">{keyValue}</span>
+    {keys[0].map(key => (
+        <span key={key} data-status={keysState[key] && keysState[key]} className="keyboard-key" onClick={() => handleKeyPress({ key })}>{key}</span>
     ))}     
         </div>
     <div className="keyboard-row">
-     {keys[1].map(keyValue => (
-        <span key={keyValue} data-status={keysState[keyValue] && keysState[keyValue]} className="keyboard-key">{keyValue}</span>
+     {keys[1].map(key => (
+        <span key={key} data-status={keysState[key] && keysState[key]} className="keyboard-key"
+        onClick={() => handleKeyPress({ key })}>{key}</span>
     ))} 
     </div>
     <div className="keyboard-row">
-     <span className="keyboard-key">Enter</span>
+     <span className="keyboard-key" onClick={() => handleKeyPress({ key: 'Enter' })}>Enter</span>
      {
-     keys[2].map(keyValue => (
-        <span key={keyValue} data-status={keysState[keyValue] && keysState[keyValue]} className="keyboard-key">{keyValue}</span>
+     keys[2].map(key => (
+        <span key={key} data-status={keysState[key] && keysState[key]} className="keyboard-key" onClick={() => handleKeyPress({ key })}>{key}</span>
     ))}
-        <span className="keyboard-key">
+        <span className="keyboard-key" onClick={() => handleKeyPress({ key: 'Backspace' })}>
             {theme === 'light' && <IoBackspaceOutline />}
             {theme === 'dark' && <IoMdBackspace />}
         </span>

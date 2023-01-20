@@ -59,7 +59,7 @@ select {
 :root[data-theme="dark"]{
   --color: var(--color-dt);
   --background-color: var(--color-bg-dt);
-  --key-bg: var(var(--color-bg-key-dt))
+  --key-bg: var(--color-bg-key-dt);
 }
 
 body{
@@ -82,6 +82,23 @@ body{
   background-color: var(--color-absent);
 }
 
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+main {
+  max-width: 600px;
+  margin: auto; 
+}
+
+.theme-switch {
+  background: none;
+  border: none;
+}
+
 .modal-wordle-info{
   margin: 1rem;
 }
@@ -91,13 +108,15 @@ body{
   grid-template-columns: repeat(5,3.25rem);
   grid-template-rows: repeat(6,3.25rem);
   gap: 0.25rem;
+  justify-content: center;
 }
 
 [data-contain=true]{
-  border: 2px solid var(--color-border-unfilled);
-}
-[data-contain=false]{
   border: 2px solid var(--color-border-filled);
+}
+
+[data-contain=false]{
+  border: 2px solid var(--color-border-unfilled);
 }
 
 .box{
@@ -110,9 +129,11 @@ body{
 
 .keyboard{
   max-width: 400px;
-  margin: 0.25rem;
+  margin: auto;
+  margin-top: 2rem;
   gap: 0.25rem;
 }
+
 
 .keyboard-key{
   font-size: 1rem;
@@ -127,6 +148,17 @@ body{
   cursor: pointer;
   text-transform: uppercase;
 }
+
+@media screen and (max-width="450px") {
+  .keyboard{
+    margin: 1rem;
+    font-weight: normal;
+  }
+  .keyboard-key{
+    flex-grow: 0;
+  }
+}
+
 .keyboard-row{
   display: flex;
   gap: 0.25rem;

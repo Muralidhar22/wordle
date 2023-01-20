@@ -17,6 +17,7 @@ export const ThemeProvider = ({ children }) => {
 
   const switchTheme = (mode) => {
     setTheme(mode)
+    document.querySelector(':root').setAttribute('data-theme',mode)
   }
   
   useEffect(() => {
