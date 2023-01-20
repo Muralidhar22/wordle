@@ -7,7 +7,7 @@ import KeyBoard from './components/KeyBoard.component';
 import { useAppContext } from './contexts/AppContext';
 
 function App() {
-  const { gameOver, message, won } = useAppContext();
+  const { gameOver, message } = useAppContext();
   const [isModalDisplayed, setIsModalDisplayed] = useState(true);
 
   return (
@@ -16,8 +16,12 @@ function App() {
       <Navbar setIsModalDisplayed={setIsModalDisplayed} />
       <main>
         {gameOver && (
-          <span className="game-over-message">
-            <span data-won={won ? true : false}>{message}</span>
+          <span className="overlay">
+            <span className="game-over-message">
+              <span className="highlight">{message}</span>
+              <br />
+              refresh to play again!
+            </span>
           </span>
         )}
         <Board />

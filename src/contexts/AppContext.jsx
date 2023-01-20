@@ -49,7 +49,6 @@ export const AppProvider = ({ children }) => {
   const answer = useRef(null);
   const [gameOver, setGameOver] = useState(false);
   const [keysState, setKeysState] = useState({});
-  const [won, setWon] = useState(false);
 
   useEffect(() => {
     if (gameOver) document.removeEventListener('keydown', handleKeyPress);
@@ -120,7 +119,7 @@ export const AppProvider = ({ children }) => {
         });
         if (cursorPos.current.row === 5 || wordMatch.every((value) => value)) {
           wordMatch.every((value) => value)
-            ? gameOverHandler('Genius') && setWon(true)
+            ? gameOverHandler('you won!') && setWon(true)
             : gameOverHandler(answer.current);
         }
         cursorPos.current.row++;
@@ -171,7 +170,6 @@ export const AppProvider = ({ children }) => {
     keys,
     message,
     gameOver,
-    won,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

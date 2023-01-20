@@ -120,7 +120,7 @@ button {
 }
 
 /* modal styling */
-
+.overlay,
 .modal-overlay {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -223,17 +223,12 @@ button {
 }
 
 .game-over-message {
-  position: absolute;
-  z-index: 100;
-  background-color: #ffffff;
+  background-color: var(--background-color);
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  text-align: center;
 }
-
-.game-over-message [data-won='true'] {
-  color: green;
-  font-weight: 500;
-}
-
-.game-over-message [data-won='false'] {
-  color: #000000;
-  font-weight: 500;
+.game-over-message .highlight {
+  font-weight: bolder;
+  text-transform: uppercase;
 }
