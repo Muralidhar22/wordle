@@ -51,6 +51,7 @@ export const AppProvider = ({ children }) => {
   const [gameOver, setGameOver] = useState(false);
   const [keysState, setKeysState] = useState({});
   const { toast } = useToastContext();
+  const keyAudio = new Audio('/assets/keyboard-click.wav');
 
   useEffect(() => {
     if (gameOver) document.removeEventListener('keydown', handleKeyPress);
@@ -145,7 +146,6 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleKeyPress = ({ key }) => {
-    const keyAudio = new Audio('/assets/keyboard-click.wav');
     keyAudio.play();
     if (cursorPos.current.row < 6 && !gameOver) {
       if (key === 'Enter') {
