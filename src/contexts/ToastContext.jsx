@@ -1,6 +1,19 @@
 import { useEffect } from 'react';
 import { createContext, useContext, useRef } from 'react';
 
+const createToast = (message) => {
+  const divEl = document.createElement('div');
+  const textContent = document.createTextNode(message);
+  divEl.style.width = '10rem';
+  divEl.style.padding = '1rem';
+  divEl.style.borderRadius = '0.5rem';
+  divEl.style.backgroundColor = 'var(--background-color)';
+  divEl.style.color = 'var(--color)';
+  divEl.style.boxShadow = 'var(--box-shadow)';
+  divEl.append(textContent);
+  return divEl;
+};
+
 const ToastContext = createContext(null);
 
 export const ToastProvider = ({ children }) => {
@@ -18,19 +31,6 @@ export const ToastProvider = ({ children }) => {
       transform: 'translate(-50%, -50%)',
     };
     return <div ref={tCRef} style={style} className="toasts-container"></div>;
-  };
-
-  const createToast = (message) => {
-    const divEl = document.createElement('div');
-    const textContent = document.createTextNode(message);
-    divEl.style.width = '10rem';
-    divEl.style.padding = '1rem';
-    divEl.style.borderRadius = '0.5rem';
-    divEl.style.backgroundColor = 'var(--background-color)';
-    divEl.style.color = 'var(--color)';
-    divEl.style.boxShadow = 'var(--box-shadow)';
-    divEl.append(textContent);
-    return divEl;
   };
 
   const toast = (message) => {
