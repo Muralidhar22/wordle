@@ -7,6 +7,7 @@ import {
   useReducer,
 } from 'react';
 
+import { useToastContext } from './ToastContext';
 import boardReducer from '../reducer/board.reducer';
 import { data } from '../word-bank';
 
@@ -49,6 +50,7 @@ export const AppProvider = ({ children }) => {
   const answer = useRef(null);
   const [gameOver, setGameOver] = useState(false);
   const [keysState, setKeysState] = useState({});
+  const { toast } = useToastContext();
 
   useEffect(() => {
     if (gameOver) document.removeEventListener('keydown', handleKeyPress);
@@ -125,7 +127,7 @@ export const AppProvider = ({ children }) => {
         cursorPos.current.row++;
         cursorPos.current.col = 0;
       } else {
-        alert('is not in word list');
+        toast('Not in word list');
       }
     }
   };
@@ -143,6 +145,8 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleKeyPress = ({ key }) => {
+    const keyAudio = new Audio('/assets/keyboard-click.wav');
+    keyAudio.play();
     if (cursorPos.current.row < 6 && !gameOver) {
       if (key === 'Enter') {
         validateEnteredValue();

@@ -55,6 +55,7 @@ select {
   --background-color: var(--color-bg-lt);
   --key-bg: var(--color-bg-key-lt);
   --modal-bg: #ffffff;
+  --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 :root[data-theme='dark'] {
@@ -62,6 +63,8 @@ select {
   --background-color: var(--color-bg-dt);
   --key-bg: var(--color-bg-key-dt);
   --modal-bg: #121213;
+  --box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2),
+    0 6px 20px 0 rgba(255, 255, 255, 0.19);
 }
 
 body {
