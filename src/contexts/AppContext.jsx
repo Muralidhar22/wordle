@@ -62,10 +62,12 @@ export const AppProvider = ({ children }) => {
   }, [boardState, gameOver]);
 
   useEffect(() => {
-    isKeyPressAllowed.current = false;
-    setTimeout(() => {
-      isKeyPressAllowed.current = true;
-    }, 1500);
+    if (cursorPos.current.row > 0) {
+      isKeyPressAllowed.current = false;
+      setTimeout(() => {
+        isKeyPressAllowed.current = true;
+      }, 1500);
+    }
   }, [boardState.boardElementsStatus]);
 
   useEffect(() => {

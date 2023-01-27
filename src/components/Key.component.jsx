@@ -17,7 +17,7 @@ const Key = ({ value }) => {
   return (
     <span
       className={`keyboard-key${!value ? ' empty' : ''}`}
-      onClick={() => handleKeyPress({ value })}
+      onClick={() => handleKeyPress({ key: value })}
       ref={keyEl}
     >
       {value}

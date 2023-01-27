@@ -250,6 +250,7 @@ button {
   border-radius: 0.25rem;
   cursor: pointer;
   text-transform: uppercase;
+  user-select: none;
 }
 
 @media screen and (max-width: 450px) {
