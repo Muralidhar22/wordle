@@ -17,7 +17,7 @@ const INITIAL_BOARD_ELEMENTS = [];
 const INITIAL_BOARD_ELEMENTS_STATUS = {};
 const keys = [
   ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-  ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+  ['', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ''],
   ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
 ];
 
@@ -51,6 +51,7 @@ export const AppProvider = ({ children }) => {
   const [gameOver, setGameOver] = useState(false);
   const [keysState, setKeysState] = useState({});
   const { toast } = useToastContext();
+  const isKeyPressAllowed = useRef(true);
 
   useEffect(() => {
     if (gameOver) document.removeEventListener('keydown', handleKeyPress);
@@ -59,6 +60,13 @@ export const AppProvider = ({ children }) => {
       document.removeEventListener('keydown', handleKeyPress);
     };
   }, [boardState, gameOver]);
+
+  useEffect(() => {
+    isKeyPressAllowed.current = false;
+    setTimeout(() => {
+      isKeyPressAllowed.current = true;
+    }, 1500);
+  }, [boardState.boardElementsStatus]);
 
   useEffect(() => {
     answer.current = data[Math.floor(Math.random() * data.length)].split('');
@@ -104,7 +112,14 @@ export const AppProvider = ({ children }) => {
                 status: 'present',
               },
             });
-            setKeysState((prev) => ({ ...prev, [value]: 'present' }));
+            setKeysState((prev) => {
+              if (prev[value] && prev[value] !== 'correct') {
+                return { ...prev, [value]: 'present' };
+              } else if (!prev[value]) {
+                return { ...prev, [value]: 'present' };
+              }
+              return prev;
+            });
             wordMatch[idx] = false;
           } else if (!answer.current.includes(value)) {
             boardStateDispatch({
@@ -115,7 +130,17 @@ export const AppProvider = ({ children }) => {
                 status: 'absent',
               },
             });
-            setKeysState((prev) => ({ ...prev, [value]: 'absent' }));
+            setKeysState((prev) => {
+              if (
+                prev[value] &&
+                (prev[value] !== 'present' || prev[value] !== 'correct')
+              ) {
+                return { ...prev, [value]: 'absent' };
+              } else if (!prev[value]) {
+                return { ...prev, [value]: 'absent' };
+              }
+              return prev;
+            });
             wordMatch[idx] = false;
           }
         });
@@ -145,7 +170,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleKeyPress = ({ key }) => {
-    if (cursorPos.current.row < 6 && !gameOver) {
+    if (cursorPos.current.row < 6 && !gameOver && isKeyPressAllowed.current) {
       if (key === 'Enter') {
         validateEnteredValue();
       } else if (key === 'Backspace') {

@@ -78,20 +78,6 @@ body {
   background-color: var(--background-color);
 }
 
-/* utilities */
-[data-status='correct'] {
-  color: var(--color-neutral);
-  background-color: var(--color-correct);
-}
-[data-status='present'] {
-  color: var(--color-neutral);
-  background-color: var(--color-present);
-}
-[data-status='absent'] {
-  color: var(--color-neutral);
-  background-color: var(--color-absent);
-}
-
 nav {
   display: flex;
   justify-content: space-between;
@@ -213,38 +199,24 @@ button {
 }
 
 [data-complete='true'].box-0 {
-  transition-delay: 0s;
   animation-delay: 0s;
-  transition-duration: var(--box-complete-duration);
-  transition-property: background-color;
+  animation-duration: var(--box-complete-duration);
 }
 
 [data-complete='true'].box-1 {
-  transition-delay: calc(var(--box-complete-duration) * 1);
   animation-delay: calc(var(--box-complete-duration) * 1);
-  transition-duration: var(--box-complete-duration);
-  transition-property: background-color;
 }
 
 [data-complete='true'].box-2 {
-  transition-delay: calc(var(--box-complete-duration) * 2);
   animation-delay: calc(var(--box-complete-duration) * 2);
-  transition-duration: var(--box-complete-duration);
-  transition-property: rotate, background-color;
 }
 
 [data-complete='true'].box-3 {
-  transition-delay: calc(var(--box-complete-duration) * 3);
   animation-delay: calc(var(--box-complete-duration) * 3);
-  transition-duration: var(--box-complete-duration);
-  transition-property: rotate, background-color;
 }
 
 [data-complete='true'].box-4 {
-  transition-delay: calc(var(--box-complete-duration) * 4);
   animation-delay: calc(var(--box-complete-duration) * 4);
-  transition-duration: var(--box-complete-duration);
-  transition-property: rotate, background-color;
 }
 
 [data-contain='false'] {
@@ -290,10 +262,27 @@ button {
   }
 }
 
+.keyboard-key.empty {
+  background-color: transparent;
+}
+
 .keyboard-row {
   display: flex;
   gap: 0.25rem;
   margin-bottom: 0.25rem;
+}
+/* key and box color change */
+[data-status='correct'] {
+  color: var(--color-neutral);
+  background-color: var(--color-correct);
+}
+[data-status='present'] {
+  color: var(--color-neutral);
+  background-color: var(--color-present);
+}
+[data-status='absent'] {
+  color: var(--color-neutral);
+  background-color: var(--color-absent);
 }
 
 .game-over-message {
