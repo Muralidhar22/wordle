@@ -1,13 +1,18 @@
 import { useAppContext } from '../contexts/AppContext';
 
 const Box = ({ row, col, value }) => {
-  const { boardElements, boardElementsStatus } = useAppContext();
+  const { boardElementsStatus } = useAppContext();
   const status = boardElementsStatus[`row_${row}_col_${col}`].status;
-  const isEmpty = Boolean(value);
+  const isPresent = Boolean(value);
 
   return (
-    <div className="box" data-status={status} data-contain={isEmpty}>
-      <span>{value}</span>
+    <div
+      className={`box box-${col}`}
+      data-complete={status ? true : false}
+      data-status={status}
+      data-contain={isPresent}
+    >
+      <span className="box-value">{value}</span>
     </div>
   );
 };

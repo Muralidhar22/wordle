@@ -36,18 +36,21 @@ select {
   --color-neutral: #ffffff;
   --color-correct: #6aaa64;
   --color-present: #c9b458;
-  --color-absent: #787c7e;
   /* light-theme */
   --color-lt: #000000;
   --color-bg-lt: var(--color-neutral);
   --color-bg-key-lt: #d3d6da;
+  --color-absent-lt: #787c7e;
   /* dark-theme */
   --color-dt: var(--color-neutral);
   --color-bg-dt: #121213;
   --color-bg-key-dt: #818384;
+  --color-absent-dt: #3a3a3c;
 
   --color-border-unfilled: #3a3a3c;
   --color-border-filled: #565758;
+  /* animation & transition duration */
+  --box-complete-duration: 0.3s;
 }
 
 :root[data-theme='light'] {
@@ -56,6 +59,7 @@ select {
   --key-bg: var(--color-bg-key-lt);
   --modal-bg: #ffffff;
   --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  --color-absent: var(--color-absent-lt);
 }
 
 :root[data-theme='dark'] {
@@ -65,6 +69,7 @@ select {
   --modal-bg: #121213;
   --box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2),
     0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  --color-absent: var(--color-absent-dt);
 }
 
 body {
@@ -174,6 +179,72 @@ button {
 
 [data-contain='true'] {
   border: 2px solid var(--color-border-filled);
+  animation: 0.5s scale;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+[data-complete='true'] {
+  animation: flip var(--box-complete-duration);
+}
+
+@keyframes flip {
+  0% {
+    rotate: x 0deg;
+  }
+  50% {
+    rotate: x 90deg;
+  }
+  100% {
+    rotate: x 0deg;
+  }
+}
+
+[data-complete='true'].box-0 {
+  transition-delay: 0s;
+  animation-delay: 0s;
+  transition-duration: var(--box-complete-duration);
+  transition-property: background-color;
+}
+
+[data-complete='true'].box-1 {
+  transition-delay: calc(var(--box-complete-duration) * 1);
+  animation-delay: calc(var(--box-complete-duration) * 1);
+  transition-duration: var(--box-complete-duration);
+  transition-property: background-color;
+}
+
+[data-complete='true'].box-2 {
+  transition-delay: calc(var(--box-complete-duration) * 2);
+  animation-delay: calc(var(--box-complete-duration) * 2);
+  transition-duration: var(--box-complete-duration);
+  transition-property: rotate, background-color;
+}
+
+[data-complete='true'].box-3 {
+  transition-delay: calc(var(--box-complete-duration) * 3);
+  animation-delay: calc(var(--box-complete-duration) * 3);
+  transition-duration: var(--box-complete-duration);
+  transition-property: rotate, background-color;
+}
+
+[data-complete='true'].box-4 {
+  transition-delay: calc(var(--box-complete-duration) * 4);
+  animation-delay: calc(var(--box-complete-duration) * 4);
+  transition-duration: var(--box-complete-duration);
+  transition-property: rotate, background-color;
 }
 
 [data-contain='false'] {
